@@ -1,1 +1,1 @@
-# medium_summarizer
+# Medium Summarizer App
