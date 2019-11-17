@@ -12,12 +12,12 @@ import numpy as np
 import tldextract
 import requests
 import spacy
-import en_core_web_sm
+# import en_core_web_sm
 
 
 # basic things to define as variables and constants
-# nlp = spacy.load('en_core_web_sm', disable = ['tagger', 'ner'])
-nlp = en_core_web_sm.load(disable = ['tagger', 'ner'])
+nlp = spacy.load('en_core_web_sm', disable = ['tagger', 'ner'])
+# nlp = en_core_web_sm.load(disable = ['tagger', 'ner'])
 
 
 viable_domain = ['medium', 'towardsdatascience', 'fritz']
