@@ -22,3 +22,6 @@ _You can find the link to the app here_
 - Moving from extractive summarizer to abstractive summarizer
 - Improvemnet in building a good summarizer from scratch
 - Improvement on the scraping part as well as the interface.
+
+
+_Feel free to go through my [draft_work](https://github.com/anitaokoh/Medium_summarizer/tree/master/scratch_work) and [jupyter_notebooks](https://github.com/anitaokoh/Medium_summarizer/tree/master/work_book)
