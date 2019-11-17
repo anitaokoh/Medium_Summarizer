@@ -17,7 +17,7 @@ _The most difficult part was trying to understand the algorithm behind the summa
 
 ![](https://github.com/anitaokoh/Medium_Summarizer/blob/master/demo.gif)
 
-_You can find the link to the app here_
+_You can find the link to the app [here](https://mediumsummary.herokuapp.com/)_
 
 **Further improvements to be done are**
 - Moving from extractive summarizer to abstractive summarizer
