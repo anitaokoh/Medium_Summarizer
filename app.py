@@ -79,7 +79,8 @@ def vectorize(string):
             if word.is_alpha:
                 clean_text.append(word.lemma_)
     new_string = ' '.join(clean_text)
-    tf = TfidfVectorizer(stop_words='english', lowercase= False)
+    # tf = TfidfVectorizer(stop_words='english', lowercase= False)
+    tf = TfidfVectorizer(lowercase= False)
     out = tf.fit_transform([new_string])
     feature_names = np.array(tf.get_feature_names())
     return out, feature_names
