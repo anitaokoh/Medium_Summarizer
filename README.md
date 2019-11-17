@@ -15,6 +15,7 @@ _The most difficult part was trying to understand the algorithm behind the summa
 
 **Here is a demo of the app** 
 
+![](https://github.com/anitaokoh/Medium_Summarizer/blob/master/demo.gif)
 
 _You can find the link to the app here_
 
