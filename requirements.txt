@@ -1,5 +1,4 @@
 sumy==0.8.1
-gunicorn==19.9.0
 sklearn==0.0
 numpy==1.17.3
 requests==2.22.0
