@@ -6,8 +6,8 @@ This is a web app that scrapes medium post get inputting the post url, sumarizes
 - App framework tools like Streamlit(first attempt), Heroku
 - Extractive summarization tool like Sumy(LSA model)
 - Webscraping libraries like BeautifulSoup and Requests
-- URL verification library like TideExtract
-- Text preprocessing libraries like Spacy(heavy duty), nltk(light duty), Sumy
+- URL verification library like TldExtract
+- Text preprocessing libraries like Spacy(heavy duty), Sumy
 - Text vectorization library like TFIDFVectorizer and CountVectorizer in Scikit-learn
 - Others like HTML etc
 
