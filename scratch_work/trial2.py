@@ -19,14 +19,16 @@ nlp = spacy.load('en_core_web_sm', disable = ['tagger', 'ner'])
 
 viable_domain = ['medium', 'towardsdatascience', 'fritz']
 LANGUAGE = 'english'
-# COUNT = 10
+
 
 correct = 'Looks like a medium post'
-warning = 'This url does not look like it is coming from medium. This may affect the quality of the highlights of the post. Try a medium post url'
+warning = 'This url does not look like it is coming from medium. Please know that this may affect the quality of the highlights of the post'
 error = 'This url does not seem correct. Please paste the correct url'
 
 
 # to make sure the url is correct
+
+@st.cache
 def validate_url(url):
     """ Make sure the url given is correct and from medium"""
     if requests.get(url).status_code == 200:
@@ -40,6 +42,7 @@ def validate_url(url):
     return message
 
 #scrape the url given
+@st.cache
 def scrape_url(url):
     """Scrape the url to get the content of the article"""
     response = requests.get(url)
@@ -51,7 +54,7 @@ def scrape_url(url):
     content = ' '.join(new)[:-11]
     return head, content
 
-
+@st.cache
 # Summarize the content in the article
 @st.cache
 def summarize(string, COUNT=10):
@@ -90,6 +93,7 @@ def get_top_tf_idf_words(response, top_n, feature_names):
 
 
 # The actual function powering the frontend
+# @st.cache
 def main():
     """Summarizing app"""
 
@@ -99,7 +103,7 @@ def main():
     html_temp = """
     <div style="background-color:skyblue;padding:15px">
     <h2> About Summarizer ML App</h2>
-    <p> This <b>Extractive Summarizer</b> gives a highlight-summary of an article based on each sentence importance as well as the keywords used. Works best on medium posts</p>
+    <p> This <b>Extractive Summarizer</b> give about 10(or more)sentence-highlights of an article as well as keywords used. Just enough to help you decide if you want to read more or not. Works best on medium posts</p>
     </div>
     <br>
     """
@@ -108,34 +112,46 @@ def main():
     st.markdown(html_temp, unsafe_allow_html=True)
 
     url = st.text_input("Enter a Medium post URL")
-    highlight = st.radio("Change the length of highlights ",("Short Highlights","Long Highlights"))
+    # @st.cache
+    # if st.checkbox('Check options'):
+    highlight = st.radio("Change the length of highlights ",("5 sentence-highlight","10 sentence-highlight"))
     if st.button("Summarize"):
-        if url == '':
-            st.error('Please input a url')
-        else:
-            try :
-                message = validate_url(url)
-                if message == 'This url does not seem correct. Please paste the correct url':
-                    st.error(message)
-                elif message == 'This url does not look like it is coming from medium. This may affect the quality of the highlights of the post. Try a medium post url':
-                    st.warning(message)
-                else:
-                   head, content = scrape_url(url)
-                   out , feature_names = vectorize(content)
-                   keywords = [get_top_tf_idf_words(response,5, feature_names ) for response in out]
-                   if highlight == 'Short Highlights':
-                           summary = summarize(content, 5)
-                   elif highlight == 'Long Highlights':
-                           summary = summarize(content, 10)
-                   st.text(f'\n\n\n')
-                   st.subheader(f'Title : {head} \n\nSummary')
-                   st.info(summary)
-                   st.warning(f'Keywords : {keywords[0][0]}, {keywords[0][1]}, {keywords[0][2]}, {keywords[0][3]}, {keywords[0][4]}')
-                   st.markdown(f'Read full article [here]({url})')
-            except:
-                st.error('Check what you pasted')
-    if st.button("Thanks"):
-        st.balloons()
+        # head, content = scrape_url(url)
+            st.write('Sweet')
+            if highlight == '10 sentence-highlight':
+                st.write('I see')
+            if highlight == '5 sentence-highlight':
+                st.write('you see')
+
+        # summary = summarize(content, 10)
+        # out , feature_names = vectorize(content)
+        # keywords = [get_top_tf_idf_words(response,5, feature_names ) for response in out]
+        # st.text(f'\n\n\n')
+        # st.subheader(f'Title : {head} \n\nSummary')
+        # st.info(summary)
+        # st.warning(f'Keywords : {keywords[0][0]}, {keywords[0][1]}, {keywords[0][2]}, {keywords[0][3]}, {keywords[0][4]}')
+        # st.markdown(f'Read full article [here]({url})')
+        # st.text('\n')
+        # st.text('\n')
+        # out , feature_names = vectorize(content)
+        # keywords = [get_top_tf_idf_words(response,5, feature_names ) for response in out]
+        # st.text(f'\n\n\n')
+        # st.subheader(f'Title : {head} \n\nSummary')
+        # st.info(summary)
+        # st.warning(f'Keywords : {keywords[0][0]}, {keywords[0][1]}, {keywords[0][2]}, {keywords[0][3]}, {keywords[0][4]}')
+        # st.markdown(f'Read full article [here]({url})')
+
+
+
+
+            if st.button("Thanks"):
+                st.balloons()
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
